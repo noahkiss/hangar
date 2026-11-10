@@ -3,11 +3,15 @@ name: ci
 on:
   push:
     branches: [main]
+    # Root-level Markdown only: wwwroot/lib ships a vendored LICENSE.md.
+    paths-ignore: ['*.md', 'LICENSE', '.claude/**']
   pull_request:
+    paths-ignore: ['*.md', 'LICENSE', '.claude/**']
 
 jobs:
   build-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
